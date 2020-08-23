@@ -1,4 +1,4 @@
-﻿using Net.Coffee.Server.Domain;
+﻿using Net.Coffee.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;

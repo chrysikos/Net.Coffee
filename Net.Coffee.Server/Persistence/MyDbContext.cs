@@ -1,10 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Net.Coffee.Library.SharedKernel;
-using Net.Coffee.Server.Domain;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Net.Coffee.Domain;
 
 namespace Net.Coffee.Server.Persistence
 {

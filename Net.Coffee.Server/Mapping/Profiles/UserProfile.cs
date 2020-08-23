@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Net.Coffee.Server.Domain;
+using Net.Coffee.Domain;
 using Net.Coffee.Server.Model;
 using System;
 using System.Collections.Generic;

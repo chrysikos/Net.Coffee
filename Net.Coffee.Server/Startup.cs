@@ -13,10 +13,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Net.Coffee.Server.Domain;
+using Net.Coffee.Domain;
 using Net.Coffee.Server.Hubs;
 using Net.Coffee.Server.Persistence;
 using psv.SFP.ApiSpecification;
+
 
 namespace Net.Coffee.Server
 {
@@ -26,46 +27,48 @@ namespace Net.Coffee.Server
         public Startup(IConfiguration configuration)
         {
             this.configuration = configuration;
-
         }
 
         public void ConfigureServices(IServiceCollection services)
         {
             #region Infrastructure
             //AutoMapper
-            //var config = new MapperConfiguration(cfg =>
-            //{
-
-            //});
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
             //Entity Framework Core
-            services.AddDbContext<MyDbContext>(options =>
-                 options.UseSqlServer(configuration.GetConnectionString("NetCoffee")));
+            services
+                .AddDbContext<MyDbContext>(options =>
+                {
+                    options.UseSqlServer(configuration.GetConnectionString("NetCoffee"));
+                });
 
             //Asp .Net
-            services.AddSignalR(options =>
-            {
+            services
+                .AddSignalR(options =>
+                {
 
-            });
-            services.AddControllers(options =>
+                });
+
+            services
+                .AddControllers(options =>
                 {
                     options.AddRJes();
                 })
-                 .AddJsonOptions(opts => opts.JsonSerializerOptions.PropertyNamingPolicy = null);
-
-
+                .AddJsonOptions(options =>
+                {
+                    options.JsonSerializerOptions.PropertyNamingPolicy = null;
+                });
             #endregion
 
             #region Domain
             services.AddScoped<UnitOfWork, UnitOfWork>();
             services.AddScoped<IUsersRepository, UsersRepository>();
+            services.AddScoped<UserService, UserService>();
             #endregion
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

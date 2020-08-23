@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Net.Coffee.Server.Domain
+namespace Net.Coffee.Domain
 {
     public class Money
     {

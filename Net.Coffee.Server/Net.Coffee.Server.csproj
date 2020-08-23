@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Net.Coffee.Domain\Net.Coffee.Domain.csproj" />
     <ProjectReference Include="..\Net.Coffee.Server.Contracts\Net.Coffee.Server.Contracts.csproj" />
   </ItemGroup>
 

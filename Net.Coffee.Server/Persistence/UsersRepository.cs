@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Net.Coffee.Server.Domain;
+using Net.Coffee.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,6 +28,16 @@ namespace Net.Coffee.Server.Persistence
         public async Task<User> GetByIdAsync(Guid id)
         {
             return await this.myDbContext.FindAsync<User>(id);
+        }
+
+        public async Task<User> GetByCredentialsUsernameAsync(string username)
+        {
+            return await this.myDbContext.Users.Where(x => x.Credentials.Username == username).FirstOrDefaultAsync();
+        }
+
+        public void Remove(User user)
+        {
+            myDbContext.Users.Remove(user);
         }
     }
 }
